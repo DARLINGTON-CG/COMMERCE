@@ -680,3 +680,8 @@ li>a {
     background-color: var(--clr-primary-400);
    
 }
+
+.width-100
+{
+    width: 1.5rem;
+}
