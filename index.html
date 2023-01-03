@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce Landing Page</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+ 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
@@ -17,15 +17,15 @@
         <div class="container underline">
             <div class="nav-wrapper">
                 <div class="flex gap-500">
-                    <div class="mobile-nav-toggle padding-block-100" aria-controls="primary-navigation">
+                    <div class="mobile-nav-toggle padding-block-100 cursor-pointer" aria-controls="primary-navigation">
                         <img class="icon-hamburger" src="assets/icon-menu.svg" aria-hidden="true" alt="">
                         <img class="icon-close" src="assets/icon-close.svg" aria-hidden="true" alt="">
                         <span class="visually-hidden">Menu</span>
                     </div>
                     <a href="#" class="sneaker-logo"><img src="assets/logo.svg" alt="sneakers"></a>
                     <nav class="primary-navigation">
-                        <ul role="list" class="nav-list gap-400 underline-indicators" id="primary-navigation">
-                            <li><button><img src="./assets/icon-close.svg"></button></li>
+                        <ul role="list"  data-visible="false" class="nav-list gap-400 underline-indicators" id="primary-navigation">
+                    
                             <li><a href="#">Collections</a></li>
                             <li><a href="#">Men</a></li>
                             <li><a href="#">Women</a></li>
@@ -165,7 +165,7 @@
         </div>
 
     </main>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
