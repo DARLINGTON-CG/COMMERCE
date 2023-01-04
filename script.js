@@ -1,6 +1,7 @@
 images = document.getElementsByClassName("thumb-image");
 mainImage = document.getElementById("mainImage");
 addToCart = document.getElementById("addToCart");
+closeBtn = document.getElementById("closeBtn");
 
 let cartBasket = document.getElementById("cartButton");
 let cartContainer = document.getElementById("cartContainer");
@@ -25,8 +26,15 @@ const imagePaths = ["./assets/image-product-1.jpg", "./assets/image-product-2.jp
 const nav = document.querySelector(".primary-navigation");
 const navToggle = document.querySelector(".mobile-nav-toggle");
 
+
+closeBtn.addEventListener("click", () => {
+    nav.setAttribute("data-visible", false);
+    navToggle.setAttribute("aria-expanded", false);
+})
+
+
 navToggle.addEventListener("click", () => {
-    
+
     const visiblity = nav.getAttribute("data-visible");
     if (visiblity === "false") {
         nav.setAttribute("data-visible", true);
@@ -42,40 +50,34 @@ addToCart.addEventListener("click", () => {
     totalItemsTip.innerText = totalSelected.innerHTML;
     totalItemsDiv.style.visibility = "visible";
     totalSelected.innerText = totalQuantity.innerText;
-    totalPrice.innerText =  "$"+ (parseInt(totalQuantity.innerText) * 125).toString();
-        
-    if(parseInt(totalSelected.innerText.toString()) <= 0 )
-    {
-        if(!filledCart.classList.contains("removed-content"))
-        {
+    totalPrice.innerText = "$" + (parseInt(totalQuantity.innerText) * 125).toString();
+
+    if (parseInt(totalSelected.innerText.toString()) <= 0) {
+        if (!filledCart.classList.contains("removed-content")) {
             filledCart.classList.add("removed-content");
         }
-        if(emptyCart.classList.contains("removed-content"))
-        {
+        if (emptyCart.classList.contains("removed-content")) {
             emptyCart.classList.remove("removed-content");
         }
     }
-    else
-    {
-        if(!emptyCart.classList.contains("removed-content"))
-        {
+    else {
+        if (!emptyCart.classList.contains("removed-content")) {
             emptyCart.classList.add("removed-content");
         }
 
-        if(filledCart.classList.contains("removed-content"))
-        {
+        if (filledCart.classList.contains("removed-content")) {
             filledCart.classList.remove("removed-content");
         }
-    } 
+    }
 
 })
 
-imageAvatar.addEventListener("mouseenter",() =>{
+imageAvatar.addEventListener("mouseenter", () => {
     let avatarContainer = document.getElementById("avatarContainer");
     avatarContainer.style.visibility = "visible";
 })
 
-imageAvatar.addEventListener("mouseleave",() => {
+imageAvatar.addEventListener("mouseleave", () => {
     let avatarContainer = document.getElementById("avatarContainer");
     avatarContainer.style.visibility = "hidden";
 })
@@ -85,7 +87,7 @@ incrementQuantity.addEventListener("click", () => {
 
     if (parseInt(totalQuantity.innerText.toString()) < 3) {
         totalQuantity.innerText = (parseInt(totalQuantity.innerText.toString()) + 1).toString()
-       // totalPrice.innerText =  "$" + (parseInt(totalQuantity.innerText) * 125).toString();
+        // totalPrice.innerText =  "$" + (parseInt(totalQuantity.innerText) * 125).toString();
         // totalSelected.innerText = totalQuantity.innerText;
 
 
@@ -95,11 +97,11 @@ incrementQuantity.addEventListener("click", () => {
 decrementQuantity.addEventListener("click", () => {
     if (parseInt(totalQuantity.innerText.toString()) > 0) {
         totalQuantity.innerText = (parseInt(totalQuantity.innerText.toString()) - 1).toString()
-       // totalSelected.innerText = totalQuantity.innerText;
+        // totalSelected.innerText = totalQuantity.innerText;
 
-       
 
-     
+
+
     }
 })
 
@@ -111,31 +113,24 @@ cartBasket.addEventListener("click", () => {
     }
     else {
 
-        console.log(totalItemsTip.innerText.toString());
-    
-        if(parseInt(totalItemsTip.innerText.toString()) <= 0 )
-        {
-            if(!filledCart.classList.contains("removed-content"))
-            {
+       
+        if (parseInt(totalItemsTip.innerText.toString()) <= 0 || totalItemsTip.innerText.toString().length === 0) {
+            if (!filledCart.classList.contains("removed-content")) {
                 filledCart.classList.add("removed-content");
             }
-            if(emptyCart.classList.contains("removed-content"))
-            {
+            if (emptyCart.classList.contains("removed-content")) {
                 emptyCart.classList.remove("removed-content");
             }
         }
-        else
-        {
-            if(!emptyCart.classList.contains("removed-content"))
-            {
+        else {
+            if (!emptyCart.classList.contains("removed-content")) {
                 emptyCart.classList.add("removed-content");
             }
 
-            if(filledCart.classList.contains("removed-content"))
-            {
+            if (filledCart.classList.contains("removed-content")) {
                 filledCart.classList.remove("removed-content");
             }
-        } 
+        }
 
 
         cartContainer.style.visibility = "visible"
@@ -144,7 +139,12 @@ cartBasket.addEventListener("click", () => {
 
 })
 
+
+
+
+
 document.addEventListener('click', function (e) {
+
     if (cartBasket.contains(e.target)) {
         cartBasket.addEventListener("click", () => {
             if (cartContainer.style.visibility == "visible") {
@@ -173,12 +173,12 @@ for (let index = 0; index < images.length; ++index) {
         if (parentNode.classList.contains("not-visible")) {
             for (let innerIndex = 0; innerIndex < images.length; ++innerIndex) {
 
-                if (images.item(innerIndex).classList.contains("add-opacity")  ) {
+                if (images.item(innerIndex).classList.contains("add-opacity")) {
                     images.item(innerIndex).classList.remove("add-opacity");
                     images.item(innerIndex).parentNode.classList.add("not-visible");
                 }
             }
-         
+
             mainImage.src = imagePaths[index];
             currentImage.classList.add("add-opacity");
             parentNode.classList.remove("not-visible");
@@ -194,19 +194,17 @@ for (let index = 0; index < images.length; ++index) {
     images.item(index).addEventListener("mouseenter", () => {
         currentImage = images.item(index);
         parentNode = currentImage.parentNode;
-        if(parentNode.classList.contains("not-visible"))
-        {
+        if (parentNode.classList.contains("not-visible")) {
             currentImage.classList.add("add-opacity");
         }
-        
+
     })
 
     images.item(index).addEventListener("mouseleave", () => {
         currentImage = images.item(index);
         parentNode = currentImage.parentNode;
-        if(parentNode.classList.contains("not-visible"))
-        {
-        currentImage.classList.remove("add-opacity");
+        if (parentNode.classList.contains("not-visible")) {
+            currentImage.classList.remove("add-opacity");
         }
     })
 }
