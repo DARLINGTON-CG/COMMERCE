@@ -400,6 +400,13 @@ li>a {
     border-radius: 0.5rem;
 }
 
+.main-image
+{
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
 .additional-margin {
     margin-inline: 0rem;
 }
@@ -429,7 +436,7 @@ li>a {
     }
 
 
-    
+
 
 
     .main-image>img {
@@ -455,7 +462,7 @@ li>a {
         justify-content: space-between;
     }
 
-    
+
 
 
 
@@ -465,18 +472,37 @@ li>a {
         padding-inline: 2rem;
         position: relative;
         justify-self: center;
-        translate: 0% -200px;
+        translate: 0 -30vh;
     }
 
 
-    .change-img-btn {
+    .next, .prev {
+
         height: 2.55rem;
         width: 2.55rem;
         background-color: var(--clr-neutral-white);
         display: grid;
         place-content: center;
         border-radius: 50%;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        margin-top: -22px;  
+        margin-inline: 1.8rem; 
+        transition:  0.65s ease-out;
     }
+
+    .next
+    {
+        right: 0;
+    }
+
+
+    .prev:hover , .next:hover
+    {
+        opacity: 0.5;
+    }
+    
 
 
 
@@ -502,9 +528,20 @@ li>a {
     display: none;
 }
 
+
+@media (min-width: 40em)
+{
+     .next, .prev
+    {
+        display: none;
+    }
+
+}
+
+
 @media (max-width: 40em) {
 
-
+   
     .primary-navigation {
         position: fixed;
         z-index: 10;
@@ -785,4 +822,5 @@ li>a {
     width: 1.5rem;
 }
 
+/* Fade animation */
 
