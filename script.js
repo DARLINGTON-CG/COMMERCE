@@ -3,6 +3,11 @@ mainImage = document.getElementById("mainImage");
 addToCart = document.getElementById("addToCart");
 closeBtn = document.getElementById("closeBtn");
 
+prevBtn = document.getElementById("prevBtn");
+nextBtn = document.getElementById("nextBtn");
+
+
+
 let cartBasket = document.getElementById("cartButton");
 let cartContainer = document.getElementById("cartContainer");
 let imageAvatar = document.getElementById("imageAvatar");
@@ -20,12 +25,26 @@ filledCart = document.getElementById("filledCart");
 emptyCart = document.getElementById("emptyCart");
 
 
-const imagePaths = ["./assets/image-product-1.jpg", "./assets/image-product-2.jpg", "./assets/image-product-3.jpg", "./assets/image-product-4.jpg"]
+const imagePaths = ["assets/image-product-1.jpg", "assets/image-product-2.jpg", "assets/image-product-3.jpg", "assets/image-product-4.jpg"]
 
 
 const nav = document.querySelector(".primary-navigation");
 const navToggle = document.querySelector(".mobile-nav-toggle");
 
+
+prevBtn.addEventListener("click", () =>{
+    const trimIndex = mainImage.src.toString().indexOf("assets");
+    const subPath = mainImage.src.toString().substring(trimIndex);
+    const imageIndex = imagePaths.indexOf(subPath);
+    mainImage.src = imageIndex === 0 ? imagePaths[3] : imagePaths[imageIndex -1];
+});
+
+nextBtn.addEventListener("click", () => {
+    const trimIndex = mainImage.src.toString().indexOf("assets");
+    const subPath = mainImage.src.toString().substring(trimIndex);
+    const imageIndex = imagePaths.indexOf(subPath);
+    mainImage.src = imageIndex === 3 ? imagePaths[0] : imagePaths[imageIndex + 1];
+})
 
 closeBtn.addEventListener("click", () => {
     nav.setAttribute("data-visible", false);
@@ -87,21 +106,13 @@ incrementQuantity.addEventListener("click", () => {
 
     if (parseInt(totalQuantity.innerText.toString()) < 3) {
         totalQuantity.innerText = (parseInt(totalQuantity.innerText.toString()) + 1).toString()
-        // totalPrice.innerText =  "$" + (parseInt(totalQuantity.innerText) * 125).toString();
-        // totalSelected.innerText = totalQuantity.innerText;
-
-
+      
     }
 })
 
 decrementQuantity.addEventListener("click", () => {
     if (parseInt(totalQuantity.innerText.toString()) > 0) {
         totalQuantity.innerText = (parseInt(totalQuantity.innerText.toString()) - 1).toString()
-        // totalSelected.innerText = totalQuantity.innerText;
-
-
-
-
     }
 })
 
